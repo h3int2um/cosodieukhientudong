@@ -1,0 +1,365 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{vietnam} %Bien dich duoc tieng Viet
+\usepackage{amsmath,amsfonts,amssymb} %Font toan
+\usepackage{xfrac}
+\usepackage{type1cm}
+\usepackage{graphicx}
+%\usepackage{subfigure}
+\usepackage{subfig}
+\graphicspath{ {images/} }
+\usepackage{multirow}
+\usepackage{multicol}
+\setlength{\columnseprule}{1pt}
+\def\columnseprulecolor{\color{blue}}
+\usepackage{longtable}
+\usepackage{enumerate}
+\usepackage{comment}
+\usepackage[unicode]{hyperref} %Tu dong tao bookmark
+\usepackage{indentfirst} %Thut vao dau dong o tat ca cac doan
+\usepackage{color} %Mau sac
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[american,cuteinductors,smartlabels]{circuitikz}
+\usepackage{tikz}
+\usetikzlibrary{arrows, decorations.markings, calc, fadings, decorations.pathreplacing, patterns, decorations.pathmorphing, positioning}	
+\title{ \textbf{Ôn tập kiểm tra giữa kỳ -- Phần lý thuyết} \vspace{.6cm} \\ \textbf{Môn học Điều khiển quá trình}}
+%\author{SVTH: Thi Minh Nhựt -- Email: thiminhnhut@gmail.com}
+\author{GVHD: Nguyễn Ngô Phong \hspace{1cm} SVTH: Thi Minh Nhựt\vspace{.4cm} \\ Lớp: Công nghệ, kỹ thuật điện, điện tử 2013}
+\date{Thời gian: Ngày 27 tháng 09 năm 2016}
+
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\bigf}[1]{\small{#1}} % Ký hiệu cho máy phát
+\newcommand{\bbigf}[1]{\huge{#1}} % Tên của các phần tử
+\newcommand{\drawe}{\draw[line width=.6pt]}
+\newcommand{\dtext}[1]{\text{\textit{#1}}}
+\newcommand{\mul}[1]{\multicolumn{1}{|p{4cm}}{#1}}
+\newcommand{\viss}[2]{#1_\text{\textit{#2}}}
+\newcommand{\vissd}[3]{#1_\text{\textit{#2}}^#3}
+\newcommand{\pfm}[1]{\left({#1}\right)}
+\newcommand{\unit}[1]{~#1}
+\newcommand{\cbnl}[3]{\text{\textit{#1}} \text{\textit{#2}}\\ \text{\textit{#3}}}
+\everymath{\displaystyle}
+\begin{document}
+\maketitle
+\subsection*{Tài liệu tham khảo}
+\begin{enumerate}[{[1].}]
+	\item Hoàng Minh Sơn, \textit{Cơ sở hệ thống Điều khiển quá trình}, \textit{Chương 1 -- Chương 3}, NXB Bách Khoa Hà Nội, Năm 2009.
+	
+	\item Nguyễn Thị Phương Hà -- Huỳnh Thái Hoàng, \textit{Lý thuyết Điều khiển tự động}, \textit{Chương 1}, NXB Đại học Quốc gia TP. Hồ Chí Minh, Năm 2005.
+\end{enumerate}
+\section*{Câu hỏi ôn tập kiểm tra}
+	\begin{enumerate}[\bf 1.]
+		\item \textbf{Mục đích của điều khiển quá trình?}
+			\begin{list}{--}{}
+				\item \textit{Nhiệm vụ của điều khiển quá trình:} Đảm bảo điều kiện vận hành an toàn, hiệu quả và kinh tế cho quá trình công nghệ.
+				\item Người kỹ sư cần phải làm rõ \textit{mục đích điều khiển} và \textit{chức năng hệ thống} để đáp ứng các mục đích cơ bản sau:
+					\begin{list}{+}{}
+						\item \textit{Đảm bảo hệ thống vận hành ổn định, trơn tru:} Giữ hệ thống hoạt động ổn định tại điểm làm việc, chuyển chế độ trơn tru, đảm bảo điều kiện yêu cầu của chế độ vận hành, kéo dài tuổi thọ máy, vận hành thuận tiện.
+						
+						\item \textit{Đảm bảo nâng suất và chất lượng sản phẩm:} Đảm bảo lưu lượng sản phẩm theo kế hoạch và duy trì thông số liên quan đến chất lượng sản phẩm trong phạm vi yêu cầu.
+
+						\item \textit{Đảm bảo vận hành hệ thống an toàn:} Giảm nguy cơ xảy ra sự cố, bảo vệ con người, máy móc và môi trường trong trường hợp xảy ra sự cố.
+						
+						\item \textit{Bảo vệ môi trường:} Giảm ô nhiễm môi trường thông qua giảm nồng độ khí thải độc hại, giảm lượng nước sử dụng và nước thải, hạn chế bụi và khói, giảm tiêu thụ nhiên liệu và nguyên liệu.
+						\item \textit{Nâng cao hiệu quả kinh tế:} Đảm bảo năng suất và chất lượng theo yêu cầu với chi phí nhân công, nguyên liệu, nhiên liệu giảm, thích ứng nhanh với thay đổi của thị trường.
+					\end{list}
+			\end{list}
+			
+		\item \textbf{Mô tả chức năng hệ thống?}
+			\begin{list}{--}{}
+				\item Mô tả chức năng hệ thống là công việc không thể thiếu trong \textit{thiết kế, xây dựng} và \textit{phát triển} hệ thống điều khiển quá trình.
+				
+				\item Tài liệu mô tả chức năng hệ thống giúp kỹ sư điều khiển, nhà công nghệ có ngôn ngữ chung để bàn bạc, trao đổi trước khi triển khai dự án, cũng như xây dựng các tài liệu chi tiết cho thiết kế cấu hình phần cứng, phát triển ứng dụng và giao diện người máy.
+				
+				\item Các dạng tài liệu chính mô tả chức năng hệ thống: gồm một số loại tài liệu mô tả đồ họa sau:
+					\begin{list}{+}{}
+							\item \textit{Lưu đồ công nghệ:} Mô tả quy trình công nghệ, không chứa thông tin chi tiết về thiết bị đo lường và điều khiển, do các nhà công nghệ xây dựng.
+								
+							\item \textit{Lưu đồ ống dẫn và thiết bị -- P$\&$ID:} miêu tả chi tiết quá trình công nghệ, kèm theo chức năng tiêu biểu của một hệ thống điều khiển quá trình cùng với chức năng liên hệ giữa các thành phần. Lưu đồ P$\&$ID là cơ sở cho việc phân tích và thiết kế hệ thống.
+							
+							\item \textit{Sơ đồ khóa liên động:} sử dụng biểu đồ logic miêu tả thuật toán điều khiển logic phục vụ điều khiển khóa liên động.
+							
+							\item \textit{Biểu đồ trình tự:} Biểu diễn các bước thực hiện chức năng của quy trình công nghệ, phục vụ bài toán điều khiển trình tự và hướng dẫn quy trình vận hành.
+					\end{list}
+			\end{list}
+			
+		\item \textbf{Điều khiển quá trình là gì? Quá trình là gì? Phân biệt quá trình kỹ thuật và quá trình công nghệ?}
+			\begin{list}{--}{}
+				\item \textit{Điều khiển quá trình:} là ứng dụng kỹ thuật điều khiển tự động trong điều khiển, vận hành và giám sát các quá trình công nghệ, nhằm đảm bảo chất lượng sản phẩm, hiệu quả sản xuất và an toàn cho con người, máy móc và môi trường.
+				
+				\item \textit{Quá trình:} Quá trình là một trình tự biểu diễn vật lý, hóa học hoặc sinh học, trong đó vật chất, năng lượng hoặc thông tin được biến đổi, vận chuyển hoặc lưu trữ.
+				
+				\item \textit{Phân biệt quá trình công nghệ và quá trình kỹ thuật:}
+					\begin{list}{+}{}
+						\item \textit{Quá trình công nghệ:} là những quá trình liên quan đến biến đổi, vận chuyển hoặc lưu trữ vật chất và năng lượng nằm trong một dây chuyền công nghệ hoặc một nhà máy sản xuất năng lượng, ví dụ: quá trình cấp liệu, trao đổi nhiệt, pha chế hỗn hợp hoặc lò phản ứng -- tháp chưng luyện, tổ hợp lò hơi -- turbin.
+						
+						\item \textit{Quá trình kỹ thuật:} là một quá trình với các đại lượng kỹ thuật được đo hoặc can thiệp, là quá trình công nghệ với các phương tiện kỹ thuật như thiết bị đo và thiết bị chấp hành.
+					\end{list}					
+			\end{list}
+			
+		\item \textbf{Phân biệt biến vào, biến ra, biến cần điều khiển, biến điều khiển, biến nhiễu?}
+			\begin{list}{--}{}
+				\item \textit{Biến vào:} là đại lượng hoặc điều kiện phản ánh tác động từ bên ngoài đến quá trình. \textit{Ví dụ:} lưu lượng dòng nguyên liệu, nhiệt độ hơi nước cấp nhiệt, trạng thái đóng -- mở của relay sợi đốt,\ldots
+				
+				\item \textit{Biến ra:} là đại lượng hoặc điều kiện thể hiện tác động của quá trình ra bên ngoài. \textit{Ví dụ:} nồng độ, lưu lượng sản phẩm ra,\ldots
+				
+				\item \textit{Biến cần điều khiển:} là một biến ra hoặc một biến trạng thái của quá trình được điểu khiển, điều chỉnh sao cho gần với giá trị mong muốn hay giá trị đặt hoặc bám theo một biến chủ đạo hoặc tín hiệu mẫu. Các biến cần điều khiển liên quan đến sự vận hành ổn định, an toàn của hệ thống và chất lượng sản phẩm. \textit{Ví dụ:} nhiệt độ, mức, lưu lượng, áp suất, nồng độ,\ldots
+				
+				\item \textit{Biến điều khiển:} là một biến vào của quá trình có thể can thiệp trực tiếp từ bên ngoài, qua đó tác động tới biến ra theo ý muốn. \textit{Ví dụ:} lưu lượng,\ldots
+				
+				\item \textit{Biến nhiễu:} gồm các biến vào còn lại, không thể can thiệp trực tiếp hoặc gián tiếp. Chia làm hai loại: \textit{nhiễu đo} (tác động lên phép đo, gây sai số cho  phép đo) và \textit{nhiễu quá trình} (tác động cố hữu lên quá trình kỹ thuật, không thể can thiệp).
+			\end{list}
+			
+		\item \textbf{Các thành phần cơ bản của hệ thống điều khiển quá trình? Cho ví dụ?}
+			\begin{list}{--}{}
+				\item Hệ thống điều khiển quá trình gồm ba thành phần cơ bản: \textit{thiết bị đo}, \textit{thiết bị chấp hành} và \textit{thiết bị điều khiển}.
+				
+				\item Sơ đồ khối biểu diễn các thành phần cơ bản của hệ thống:
+					\begin{center}	
+						\begin{tikzpicture}
+							\drawe[-triangle 90] (0,0) -- (2.2,0);
+							\draw (1,0.3) node{\dtext{Giá trị đặt}};
+							\draw (1.1,-.3) node{\dtext{SP}};
+							
+							\drawe (2.2,.7) rectangle (4.6, -.7);
+							\draw (3.4,0.25) node{\dtext{Bộ}};
+							\draw (3.4,-.25) node{\dtext{điều khiển}};
+														
+							\drawe[-triangle 90] (4.6,0) -- (6.8,0);
+							\draw (5.6,0.8) node{\dtext{Tín hiệu}};
+							\draw (5.6,0.3) node{\dtext{điều khiển}};
+							\draw (5.7,-.3) node{\dtext{CO}};
+							
+							\drawe (6.8,.7) rectangle (9.2, -.7);
+							\draw (8,0.25) node{\dtext{Thiết bị}};
+							\draw (8,-.25) node{\dtext{chấp hành}};
+							
+							\drawe[-triangle 90] (9.2,0) -- (11.6,0);
+							\draw (10.3,0.8) node{\dtext{Biến}};
+							\draw (10.3,0.3) node{\dtext{điều khiển}};
+							\draw (10.4,-.3) node{\dtext{MV}};
+							
+							\drawe (11.6,.7) rectangle (14, -.7);
+							\draw (12.8,0.25) node{\dtext{Quá trình}};
+							\draw (12.8,-.25) node{\dtext{công nghệ}};
+							
+							\drawe[-triangle 90] (14,0) -- (16.2,0);
+							\draw (15,0.8) node{\dtext{Biến được}};
+							\draw (15,0.3) node{\dtext{điều khiển}};
+							\draw (15.1,-.3) node{\dtext{CV}};
+							
+							\drawe (12.8,-.7) -- (12.8,-2.2);
+						\drawe[-triangle 90] (12.8,-2.2) -- (9.2,-2.2);
+						\draw (11,-1.9) node{\dtext{Đại lượng đo}};
+						\draw (11,-2.5) node{\dtext{PV}};
+						
+						\drawe (9.2,-1.5) rectangle (6.8, -2.9);
+							\draw (8,-1.95) node{\dtext{Thiết bị}};
+							\draw (8,-2.45) node{\dtext{đo}};
+							
+							\drawe (6.8,-2.2) -- (3.4,-2.2);
+							\draw (5.1,-1.9) node{\dtext{Tín hiệu đo}};
+						\draw (5.1,-2.5) node{\dtext{PM}};
+						\drawe[-triangle 90] (3.4,-2.2) -- (3.4,-.7);
+						\end{tikzpicture}
+					\end{center}	
+				
+				\item \textit{Thiết bị đo:}	
+					\begin{list}{+}{}
+						\item Chức năng: cung cấp một tín hiệu ra tỉ lệ theo một định nghĩa nào đó với đại lượng đo.
+						
+						\item Gồm 2 thành phần cơ bản: \textit{cảm biến} và \textit{chuyển đổi đo}.
+						
+						\item \textit{Cảm biến:} có chức năng tự động cảm nhận đại lượng quan tâm của quá trình kỹ thuật và biến đổi thành tín hiệu. Để tín hiệu có thể truyền đi xa và sử dụng được trong thiết bị điều khiển hoặc dụng cụ chỉ báo: tín hiệu cần được khuếch đại và chuyển đổi sang dạng thích hợp.
+						\item \textit{Bộ chuyển đổi đo chuẩn:} bộ chuyển đổi có đầu ra là tín hiệu chuẩn, \textit{ví dụ:} tín hiệu điện áp $1-10V$, tín hiệu dòng điện $0-20mA, 4-20mA$, tín hiệu bus trường,\ldots
+					\end{list}
+					
+				\item \textit{Thiết bị điều khiển:}
+					\begin{list}{+}{}
+						\item Là thiết bị tự động thực hiện chức năng điều khiển, thành phần cốt lõi của hệ thống điều khiển công nghiệp.
+						
+						\item Trên cơ sở tín hiệu đo và cấu trúc điều khiển, bộ điều khiển có thể thực hiện thực toán và xuất tín hiệu ra để can thiệp quá trình kỹ thuật thông qua cơ cấu chấp hành.
+						
+						\item Phân loại: \textit{thiết bị điều khiển tương tự} (thiết bị điều chỉnh cơ, khí nén, điện tử,\ldots), \textit{thiết bị điều khiển logic} (các mạch logic relay cơ điện hoặc điện tử,\ldots), \textit{thiết bị điều khiển số} (thiết bị được xây dựng trên nền tảng máy tính số, thay thế chức năng của thiết bị điều khiển tương tự hoặc logic, tích hợp các bộ chuyển đổi tín hiệu, có chất lượng và độ tin cậy cao, thực hiện đa chức năng: điều khiển, tính toán, hiển thị,\ldots).	
+					\end{list}
+
+				\item \textit{Thiết bị chấp hành:}
+					\begin{list}{+}{}
+						\item Chức năng: Nhận tín hiệu ra từ bộ điều khiển và thực hiện tác động can thiệp đến biến điều khiển. \textit{Ví dụ:} van điều khiển, động cơ, máy bơm, quạt gió,\ldots
+						\item Thông qua các thiết bị chấp hành hệ thống có thể can thiệp vào diễn biến của quá trình kỹ thuật.
+						
+						\item Thiết bị chấp hành gồm 2 thành phần cơ bản: \textit{cơ cấu chấp hành} (chuyển đổi tín hiệu điều khiển thành năng lượng) và \textit{phần tử điều khiển} (can thiệp trực tiếp vào biến điều khiển).
+					\end{list}
+				
+				\item \textit{Ví dụ:} Sơ đồ điều khiển tự động vận tốc cho một động cơ DC được điều khiển bằng trường.
+					\begin{center}
+						\begin{tikzpicture}
+							\drawe[-triangle 90] (0,0) -- (2.2,0);
+							\draw (1,0.8) node{\dtext{Tín hiệu}};
+							\draw (1,0.3) node{\dtext{điều khiển}};
+							\draw (1.1,-.3) node{\dtext{Điện áp}};
+							
+							\drawe (2.2,.7) rectangle (4.6, -.7);
+							\draw (3.4,0.25) node{\dtext{Bộ khuếch}};
+							\draw (3.4,-.25) node{\dtext{ đại vi sai}};
+														
+							\drawe[-triangle 90] (4.6,0) -- (6.8,0);
+							\draw (5.6,0.3) node{\dtext{Sai lệch}};					
+							
+							\drawe (6.8,.7) rectangle (9.2, -.7);
+							\draw (8,0.25) node{\dtext{Động cơ}};
+							\draw (8,-.25) node{\dtext{DC}};
+							
+							\drawe[-triangle 90] (9.2,0) -- (11.6,0);
+							\draw (10.3,0.3) node{\dtext{Moment}};					
+							
+							\drawe (11.6,.7) rectangle (14, -.7);
+							\draw (12.8,0.25) node{\dtext{Tải}};
+							\draw (12.8,-.25) node{\dtext{(lưỡi cưa)}};
+							
+							\drawe[-triangle 90] (14,0) -- (16.2,0);
+							\draw (15,0.8) node{\dtext{Vận tốc}};
+							\draw (15,0.3) node{\dtext{ngõ ra}};
+														
+							\drawe (15.1,0) -- (15.1,-2.2);
+						\drawe[-triangle 90] (15.1,-2.2) -- (9.2,-2.2);					
+						
+						\drawe (9.2,-1.5) rectangle (6.8, -2.9);
+							\draw (8,-2.2) node{\dtext{Tachometer}};						
+							
+							\drawe (6.8,-2.2) -- (3.4,-2.2);
+							\draw (5.1,-1.4) node{\dtext{Vòng hồi tiếp}};
+							\draw (5.1,-1.9) node{\dtext{vận tốc}};				
+						\drawe[-triangle 90] (3.4,-2.2) -- (3.4,-.7);
+						\end{tikzpicture}
+					\end{center}
+			\end{list}
+		
+		\item \textbf{Nêu các bước cơ bản trong quy trình mô hình hóa?}
+			\begin{list}{--}{}
+				\item Các bước quy trình mô hình hóa:
+				\begin{center}
+					\begin{tikzpicture}
+						\drawe (0,.5) rectangle (8,-.5);
+						\draw (.2,0) node[right]{\dtext{1. Đặt bài toán mô hình hóa}};
+					
+						\drawe[-triangle 90] (4,-.5) -- (4,-1.5);
+					
+						\drawe (0,-1.5) rectangle (8,-2.5);
+						\draw (.2,-2) node[right]{\dtext{2. Phân chia thành các quá trình cơ bản}};
+					
+						\drawe[-triangle 90] (4,-2.5) -- (4,-3.5);
+					
+						\drawe (0,-3.5) rectangle (8,-4.5);
+						\draw (.2,-4) node[right]{\dtext{3. Xây dựng các mô hình thành phần}};
+					
+						\drawe[-triangle 90] (4,-4.5) -- (4,-5.5);
+					
+						\drawe (0,-5.5) rectangle (8,-6.5);
+						\draw (.2,-6) node[right]{\dtext{4. Kết hợp các mô hình thành phần}};
+					
+						\drawe[-triangle 90] (4,-6.5) -- (4,-7.5);
+					
+						\drawe (0,-7.5) rectangle (8,-8.5);
+						\draw (.2,-8) node[right]{\dtext{5. Phân tích và kiểm chứng mô hình}};
+					
+						\drawe[dashed] (4,-8.5) -- (4,-9.5) -- (-2,-9.5) -- (-2,-2);
+						\drawe[dashed,-triangle 90] (-2,-2) -- (0,-2);
+						\drawe[dashed,-triangle 90] (-2,-4) -- (0,-4);
+						\drawe[dashed,-triangle 90] (-2,-6) -- (0,-6);
+					\end{tikzpicture}
+				\end{center}
+				
+				\item \textit{Đặt bài toán mô hình hóa:}
+					\begin{list}{+}{}
+						\item Nhiệm vụ: nghiên cứu kỹ lưu đồ công nghệ, xác định mục đích sử dụng của mô hình, tóm tắt thông số công nghệ, giả thiết quan trọng.
+						\item Làm rõ mức độ chi tiết và chính xác của mô hình, xác định phương pháp và công cụ phân tích, đánh giá chất lượng của mô hình (mô phỏng máy tính).
+						
+						\item Mục đích sử dụng mô hình quyết định yêu cầu, mức độ chi tiết và độ chính xác của mô hình.
+						
+						\item Mô hình hóa phục vụ tối ưu hóa và đào tạo vận hành đòi hỏi mức độ chi tiết và độ chính xác cao nhất. Mức độ chi tiết thể hiện trong cấu trúc mô hình, mức độ chính xác thể hiện qua cấu trúc và thông số mô hình.
+						\item Mô hình hóa quyết định dạng mô tả toán học được lựa chọn và phát triển.
+					\end{list}
+					
+				\item 	\textit{Phân chia hệ thống:}
+					\begin{list}{+}{}
+						\item Mục đích: chia quy trình phức tạp thành các quy trình con đơn giản.
+						\item Các mô hình con được xây dựng bằng phương pháp lý thuyết hoặc thực nghiệm.
+						\item Một quy trình phức tạp: phân chia thành các quy trình tổ hợp công nghệ rồi chia thành các quá trình cơ bản trong từng tổ hợp công nghệ, mỗi quá trình có thể phân tích thành các nguyên công.
+						
+						\item Xây dựng phương trình toán từ nguyên công hoặc quá trình cơ bản, kết hợp cho từng tổ hợp công nghệ và cuối cùng là cả quy trình.
+						
+						\item Nguyên tắc phân chia: các quá trình con cần tương đối độc lập với nhau.
+					\end{list}
+					
+				\item \textit{Xây dựng các mô hình thành phần:}
+					\begin{list}{+}{}
+						\item Mục đích của xây dựng mô hình toán học: làm rõ mục đích điều khiển, nhận biết các biến điều khiển, cần điều khiển, biến nhiễu, xác định quan hệ giữa các biến qua phương trình vi phân, hàm truyền đạt, đáp ứng xung, đáp ứng bậc thang, phương trình trạng thái.
+						\item Các tham số mô hình: được xác định qua tham số quá trình và giả thuyết hoặc phương pháp nhận dạng.
+						
+						\item Có mô hình toán học: tiến hành phân tích và kiểm chứng bằng các công cụ toán học và công cụ mô phỏng: kiểm chứng về tính hợp lý, trung thực và giá trị sử dụng.
+						
+						\item Đánh giá khả năng giải được, điều khiển được thông qua phân tích bậc tự do của mô hình.
+						\item Mục đích sử dụng chủ yếu của mô hình là: thiết kế sách lược điều khiển và thuật toán điều khiển.
+					\end{list}
+					
+				\item \textit{Kết hợp các mô hình thành phần:}
+					\begin{list}{+}{}
+						\item Các mô hình thành phần có thể được sử dụng trực tiếp để phân tích, thiết kế điều khiển và mô phỏng từng phần của hệ thống.
+						
+						\item Trong cấu trúc tập trung: cần kết hợp các mô hình thành phần thành mô hình lớn hơn.
+									
+						\item Nguyên tắc kết hợp: dựa trên tín hiệu vào -- ra, không dựa vào dòng quá trình.			
+					\end{list}
+					
+				\item \textit{Phân tích và kiểm chứng mô hình:}
+					\begin{list}{+}{}
+						\item Mô hình tổng hợp từ các mô hình thành phần cần được phân tích và kiểm chứng chi tiết hơn.
+						\item Các thông tin đưa ra cần liên quan đến tính chất của mô hình phản ánh đặc tính của quá trình: độ phi tuyến, tính ổn định, khả năng điều khiển vào -- ra, mức độ trương tác giữa biến vào -- ra. Lúc này số bậc tự do của mô hình cần được xác định lại.
+						
+						\item Sử dụng máy tính để mô phỏng quá trình để nhận được nhiều kết quả quan trọng mà phương pháp lý thuyết không làm được. Kết quả mô phỏng cần được so sánh với quá trình thực hoặc kết quả đo đạc thực nghiệm (đặc biệt đối với các mô hình có được từ nhận dạng).
+					\end{list}
+			\end{list}
+			
+		\item \textbf{Các bước mô hình hóa lý thuyết?}		
+			\begin{list}{--}{}
+				\item Các bước mô hình hóa lý thuyết, gồm 4 bước chính: \textit{phân tích bài toán mô hình}, \textit{xây dựng phương trình mô hình}, \textit{kiểm chứng mô hình}, \textit{phát triển mô hình}. Bên cạnh đó, có thể \textit{lặp lại một trong 4 bước này nếu cần thiết.}
+				\item \emph{Phân tích bài toán mô hình hóa:} 
+				\begin{list}{+}{}		
+					\item Tìm hiểu quy trình công nghệ, nêu rõ mục đích sử dụng của mô hình, xác định mức độ chi tiết và độ chính xác của mô hình.
+		
+					\item Tiến hành phân chia các quá trình con, nhận biết và đặt tên các biến quá trình, các tham số quá trình (biến vào, biến ra, biến cần điều khiển, biến điều khiển, biến nhiễu).
+		
+					\item Liệt kê các giả thiết liên quan đến mô hình nhằm đơn giản hóa mô hình.
+				\end{list}
+	
+			\item \emph{Xây dựng các phương trình mô hình:} 
+	
+			\begin{list}{+}{}
+				\item Viết các phương trình cân bằng và phương trình đại số: dựa vào định luật bảo toàn, định luật nhiệt động học, vận chuyển, cân bằng pha.
+			
+				\item Đơn giản hóa mô hình: rút gọn, thay thế đưa về phương trình vi phân chuẩn tắc.
+			
+				\item Tính toán các thông số mô hình dựa trên các thông số công nghệ được đặc tả.
+			\end{list}
+		
+		\item \emph{Kiểm chứng mô hình:}
+			\begin{list}{+}{}
+				\item Phân tích bậc tự do của quá trình: dựa vào biến quá trình và số lượng các quan hệ phụ thuộc.
+			
+				\item Đánh giá mức độ phù hợp của mô hình: dựa vào phân tích tính chất và mô phỏng máy tính (mô phỏng động hoặc tĩnh; mô phỏng liên tục hoặc rời rạc; mô phỏng tuần tự hoặc theo thời gian thực; mô phỏng tương tác hoặc phi tương tác; mô phỏng nhân -- quả hoặc phi nhân -- quả).
+			\end{list}
+		
+		\item \emph{Phát triển mô hình:}
+			\begin{list}{+}{}
+				\item Chuyển đổi mô hình về các dạng thích hợp.
+			
+				\item Tuyến tính hóa mô hình tại điểm làm việc (nếu cần).
+			
+				\item Tiêu chuẩn hóa mô hình: theo phương pháp phân tích và thiết kế điều khiển.
+			\end{list}
+		
+		\item 	\emph{Lặp lại một trong 4 bước trên nếu cần thiết.}
+			\end{list}
+	\end{enumerate}
+\end{document}
